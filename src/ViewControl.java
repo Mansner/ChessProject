@@ -9,11 +9,12 @@ class ViewControl extends JFrame implements ActionListener {
     private Square[][] board;
     private JLabel message = new JLabel();
     private JPanel panel = new JPanel();
+    private AbstractButton chessPanel;
 
     public static void main(String[] u) {
         Boardgame game = new Chess();
         new ViewControl(game, 8);
-        //tjohh
+        //tjo
     }
     ViewControl (Boardgame gm, int n) {
         this.game = gm;
@@ -79,5 +80,32 @@ class ViewControl extends JFrame implements ActionListener {
         String mess = game.getMessage();
         message.setText(mess);
     }
+    void paintBoard() {
+        this.chessPanel.setLayout(new GridLayout(8, 8));
+        Color black = new Color(190,97,78);
+        Color white = new Color(255,255,255);
+        Color c = black;
 
-}
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+
+                if (i % 2 == 0) {
+                    if (j % 2 == 0) {
+                        c = white;
+                    } else {
+                        c = black;
+                    }
+                } else if (i % 2 == 1) {
+                    if (j % 2 == 0) {
+                        c = black;
+                    } else {
+                        c = white;
+                    }
+                }
+
+                Square square = new Square(i, j, c);
+                this.board[i][j] = square;
+                this.chessPanel.add(square);
+
+            }
+        }}}

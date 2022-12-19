@@ -15,7 +15,7 @@ public class Chess implements Boardgame {
     public String getStatus(int x, int y) {
         return null;
     }
-    //tjena
+
     @Override
     public String getMessage() {
         return null;
