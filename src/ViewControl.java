@@ -40,7 +40,8 @@ class ViewControl extends JFrame implements ActionListener {
         board = new Square[n][n];
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
-                Square sq = new Square(i, j);
+                System.out.println("tjockis");
+                Square sq = new Square(i, j, Color.black);
                 sq.addActionListener(this);
                 panel.add(sq);
                 sq.setBounds(j*100+100, i*100+100, 100, 100);
@@ -64,7 +65,6 @@ class ViewControl extends JFrame implements ActionListener {
         }
 
     }
-
 
     void updateStatus() {
     String status;
