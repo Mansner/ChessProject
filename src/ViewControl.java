@@ -89,16 +89,14 @@ class ViewControl extends JFrame implements ActionListener {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
 
-                if (i%2 == 0) {
-                    if (j%2 == 0) {
+                if (i % 2 == 0) {
+                    if (j % 2 == 0) {
                         c = white;
                     } else {
                         c = black;
                     }
-                }
-
-                else if (i%2 == 1) {
-                    if (j%2 == 0) {
+                } else if (i % 2 == 1) {
+                    if (j % 2 == 0) {
                         c = black;
                     } else {
                         c = white;
@@ -109,4 +107,5 @@ class ViewControl extends JFrame implements ActionListener {
                 this.board[i][j] = square;
                 this.chessPanel.add(square);
 
-}
+            }
+        }}}
