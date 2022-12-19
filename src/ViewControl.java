@@ -11,7 +11,7 @@ class ViewControl extends JFrame implements ActionListener {
     private JPanel panel = new JPanel();
 
     public static void main(String[] u) {
-        Boardgame game = new Chess;
+        Boardgame game = (Boardgame) new Chess();
         new ViewControl(game, 3);
         //tjo
     }
