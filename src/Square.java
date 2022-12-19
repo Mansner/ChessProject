@@ -13,6 +13,7 @@ public class Square extends JButton {
         setFont(new Font("Arial", Font.PLAIN, 50));
 
         setVisible(true);
+        hej
     }
 
 }
