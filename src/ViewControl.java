@@ -13,6 +13,7 @@ class ViewControl extends JFrame implements ActionListener {
     public static void main(String[] u) {
         Boardgame game = new Chess;
         new ViewControl(game, 3);
+        //tjo
     }
     ViewControl (Boardgame gm, int n) {
         this.game = gm;
