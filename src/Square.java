@@ -27,8 +27,8 @@ public class Square extends JButton {
         this.j = j;
         this.color=color;
 
+        setBorderPainted(true);
         setFont(new Font("Arial", Font.PLAIN, 50));
-        setBackground(color);
 
         setVisible(true);
     }

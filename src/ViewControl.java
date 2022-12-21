@@ -42,6 +42,24 @@ class ViewControl extends JFrame implements ActionListener {
             for (int j=0; j<n; j++) {
                 System.out.println("tjockis");
                 Square sq = new Square(i, j, Color.black);
+                sq.setBorderPainted(false);
+                sq.setOpaque(true);
+
+                if (i % 2 == 0) {
+                    if (j % 2 == 0) {
+                        sq.setBackground(Color.LIGHT_GRAY);
+                    } else {
+                        sq.setBackground(Color.DARK_GRAY);
+                        ;
+                    }
+                } else if (i % 2 == 1) {
+                    if (j % 2 == 0) {
+                        sq.setBackground(Color.DARK_GRAY);
+                    } else {
+                        sq.setBackground(Color.LIGHT_GRAY);
+                    }
+                }
+
                 sq.addActionListener(this);
                 panel.add(sq);
                 sq.setBounds(j*100+100, i*100+100, 100, 100);
