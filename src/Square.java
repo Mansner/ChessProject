@@ -22,10 +22,12 @@ public class Square extends JButton {
     public int j;
     private Color color;
 
+
     public Square(int i, int j, Color color) {
         this.i = i;
         this.j = j;
         this.color=color;
+
 
         setBorderPainted(true);
         setFont(new Font("Arial", Font.PLAIN, 50));
@@ -33,4 +35,7 @@ public class Square extends JButton {
         setVisible(true);
     }
 
+    public void setImage(int identifier) {
+        this.setIcon(icons[identifier]);
+    }
 }

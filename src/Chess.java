@@ -1,25 +1,31 @@
-public class Chess implements Boardgame {
-    private final String[][] board = new String[8][8];
+public class Chess {
+    Square[][] board = new Square[8][8];
 
-    @Override
+
+
     public boolean move(int x, int y) {
         return false;
     }
 
-    @Override
+
     public boolean drop(int x, int y) {
         return false;
     }
 
-    @Override
     public String getStatus(int x, int y) {
         return null;
     }
 
-    @Override
     public String getMessage() {
         return null;
     }
 
+    public void initBoard() {
+        this.board[0][2] = new Square(0, 2);
+    }
 
+
+    public Chess(){
+        initBoard();
+    }
 }
