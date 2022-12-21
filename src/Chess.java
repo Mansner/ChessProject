@@ -21,8 +21,8 @@ public class Chess {
     }
 
     public void initBoard() {
-        this.board[0][2] = new Square(0, 2);
-    }
+        this.board[0][2] = new Bishop(0, 2, false);
+    } /// den här som jag inte fattar varför den är röd
 
 
     public Chess(){
