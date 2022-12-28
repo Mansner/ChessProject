@@ -1,7 +1,5 @@
-public class Chess {
-    Square[][] board = new Square[8][8];
-
-
+public class Chess implements Boardgame {
+    private final Piece[][] board = new Piece[8][8];
 
     public boolean move(int x, int y) {
         return false;
@@ -12,8 +10,8 @@ public class Chess {
         return false;
     }
 
-    public String getStatus(int x, int y) {
-        return null;
+    public Piece getStatus(int i, int j) {
+        return this.board[i][j];
     }
 
     public String getMessage() {
@@ -21,6 +19,7 @@ public class Chess {
     }
 
     public void initBoard() {
+
         this.board[0][2] = new Bishop(0, 2, false);
     } /// den här som jag inte fattar varför den är röd
 

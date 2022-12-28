@@ -1,28 +1,29 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.Icon;
+
 
 class ViewControl extends JFrame implements ActionListener {
 
+    private Boardgame game;
     private int n;
     private Square[][] board;
     private JLabel message = new JLabel();
     private JPanel panel = new JPanel();
-    private Chess game;
+    private AbstractButton chessPanel;
 
-
-
-    public static void main(String[] args) {
-        Chess game = new Chess();
+    public static void main(String[] u) {
+        Boardgame game = new Chess();
         new ViewControl(game, 8);
         //tjo
     }
-
-    ViewControl(Chess gm, int n) {
+    ViewControl (Boardgame gm, int n) {
         this.game = gm;
         this.n = n;
 
-        setSize(700, 700);
+        setSize(800, 800);
 
         panel.setLayout(null);
         add(panel);
@@ -40,16 +41,15 @@ class ViewControl extends JFrame implements ActionListener {
 
     void createButtons() {
         board = new Square[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.println("tjockis");
-                Square sq = new Square(i, j, Color.black);
+        for (int i=0; i<n; i++) {
+            for (int j=0; j<n; j++) {
+                Square sq = new Square(i, j);
                 sq.setBorderPainted(false);
                 sq.setOpaque(true);
 
                 if (i % 2 == 0) {
                     if (j % 2 == 0) {
-                        sq.setBackground(Color.LIGHT_GRAY);
+                        sq.setIcon(new ImageIcon("pawn.png"));
                     } else {
                         sq.setBackground(Color.DARK_GRAY);
                         ;
@@ -64,52 +64,68 @@ class ViewControl extends JFrame implements ActionListener {
 
                 sq.addActionListener(this);
                 panel.add(sq);
-                sq.setBounds(j * 60 + 60, i * 60 + 60, 60, 60);
+                sq.setBounds(j*100+100, i*100+100, 100, 100);
                 board[i][j] = sq;
             }
         }
     }
 
     public void actionPerformed(ActionEvent e) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i=0; i<n; i++) {
+            for (int j=0; j<n; j++) {
                 if (e.getSource() == board[i][j]) {
+                    System.out.println(i);
                     Square sq = board[i][j];
                     game.move(sq.i, sq.j);
                     updateStatus();
                     updateMessage();
                 }
 
-            }
+                }
 
         }
 
     }
 
     void updateStatus() {
-        String status;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                status = game.getStatus(i, j);
-                board[i][j].setText(status);
-            }
+    for (int i=0; i<n; i++) {
+        for (int j=0; j<n; j++) {
+            Piece status = game.getStatus(i, j);
+            board[i][j].setImage(0);
         }
     }
+}
 
     void updateMessage() {
         String mess = game.getMessage();
         message.setText(mess);
     }
+    void paintBoard() {
+        this.chessPanel.setLayout(new GridLayout(8, 8));
+        Color black = new Color(190,97,78);
+        Color white = new Color(255,255,255);
+        Color c = black;
 
-
-    void setBtnListeners() {
-        Square square;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                square = board[i][j];
-                square.addActionListener(this);
-            }
-        }
-    }
 
-}
+                if (i % 2 == 0) {
+                    if (j % 2 == 0) {
+                        c = white;
+                    } else {
+                        c = black;
+                    }
+                } else if (i % 2 == 1) {
+                    if (j % 2 == 0) {
+                        c = black;
+                    } else {
+                        c = white;
+                    }
+                }
+
+                Square square = new Square(i, j);
+                this.board[i][j] = square;
+                this.chessPanel.add(square);
+
+            }
+        }}}

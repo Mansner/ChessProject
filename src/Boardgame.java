@@ -4,7 +4,7 @@ public interface Boardgame {
 
     public boolean drop(int x, int y);
 
-    public String getStatus(int x, int y);
+    public Piece getStatus(int x, int y);
 
     public String getMessage();
 

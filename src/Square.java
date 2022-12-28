@@ -1,5 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.ImageIcon;
+
 
 public class Square extends JButton {
 
@@ -23,11 +25,9 @@ public class Square extends JButton {
     private Color color;
 
 
-    public Square(int i, int j, Color color) {
+    public Square(int i, int j) {
         this.i = i;
         this.j = j;
-        this.color=color;
-
 
         setBorderPainted(true);
         setFont(new Font("Arial", Font.PLAIN, 50));
@@ -36,6 +36,6 @@ public class Square extends JButton {
     }
 
     public void setImage(int identifier) {
-        this.setIcon(icons[identifier]);
+        this.setIcon(icons[1]);
     }
 }
