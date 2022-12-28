@@ -1,8 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Objects;
+import java.io.File;
 import javax.swing.*;
 import javax.swing.ImageIcon;
+import javax.swing.Icon;
 
 
 class ViewControl extends JFrame implements ActionListener {
@@ -23,7 +24,7 @@ class ViewControl extends JFrame implements ActionListener {
         this.game = gm;
         this.n = n;
 
-        setSize(750, 750);
+        setSize(800, 800);
 
         panel.setLayout(null);
         add(panel);
@@ -49,17 +50,16 @@ class ViewControl extends JFrame implements ActionListener {
 
                 if (i % 2 == 0) {
                     if (j % 2 == 0) {
-                        try {
-                            ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("img/bishop.png")));
-                            JLabel displayField = new JLabel(img);
-                            sq.add(displayField);
-                            System.out.println("hej");
-                        } catch (Exception ex) {
-                            System.out.println(ex);
-                        }
+                        sq.setIcon(new ImageIcon("pawn.png"));
+                        File imageCheck = new File("pawn.png");
+
+                        if(imageCheck.exists())
+                            System.out.println("Image file found!");
+                        else
+                            System.out.println("Image file not found!");
                     } else {
                         sq.setBackground(Color.DARK_GRAY);
-                        ;
+
                     }
                 } else if (i % 2 == 1) {
                     if (j % 2 == 0) {
@@ -71,7 +71,7 @@ class ViewControl extends JFrame implements ActionListener {
 
                 sq.addActionListener(this);
                 panel.add(sq);
-                sq.setBounds(j*75+75, i*75+75, 75, 75);
+                sq.setBounds(j*100+100, i*100+100, 100, 100);
                 board[i][j] = sq;
             }
         }
