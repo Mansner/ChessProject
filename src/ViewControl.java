@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import javax.swing.*;
 import javax.swing.ImageIcon;
 import javax.swing.Icon;
@@ -50,6 +51,12 @@ class ViewControl extends JFrame implements ActionListener {
                 if (i % 2 == 0) {
                     if (j % 2 == 0) {
                         sq.setIcon(new ImageIcon("pawn.png"));
+                        File imageCheck = new File("pawn.png");
+
+                        if(imageCheck.exists())
+                            System.out.println("Image file found!");
+                        else
+                            System.out.println("Image file not found!");
                     } else {
                         sq.setBackground(Color.DARK_GRAY);
                         ;
