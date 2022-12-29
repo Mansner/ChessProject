@@ -4,15 +4,17 @@ public abstract class Piece {
 
     public int i;
     public int j;
+    public String name;
     public int value = -1;
     public boolean isWhite;
     public boolean firstMove = true;
     public ArrayList<ArrayList<Integer>> legalMoves = new ArrayList<ArrayList<Integer>>();
 
-    public Piece(int i, int j, boolean isWhite) {
+    public Piece(int i, int j, boolean isWhite, String name) {
         this.i = i;
         this.j = j;
         this.isWhite = isWhite;
+        this.name = name;
     }
 
     public void firstMoveHasBeenMade() {

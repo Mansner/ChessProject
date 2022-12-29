@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.Objects;
 import javax.swing.*;
 import javax.swing.ImageIcon;
 import javax.swing.Icon;
@@ -32,6 +33,7 @@ class ViewControl extends JFrame implements ActionListener {
         createButtons();
         updateStatus();
 
+
         message.setBounds(100, 50, 1000, 60);
         message.setFont(new Font("Arial", Font.BOLD, 20));
         panel.add(message);
@@ -50,13 +52,7 @@ class ViewControl extends JFrame implements ActionListener {
 
                 if (i % 2 == 0) {
                     if (j % 2 == 0) {
-                        sq.setIcon(new ImageIcon("pawn.png"));
-                        File imageCheck = new File("pawn.png");
-
-                        if(imageCheck.exists())
-                            System.out.println("Image file found!");
-                        else
-                            System.out.println("Image file not found!");
+                        sq.setBackground(Color.LIGHT_GRAY);
                     } else {
                         sq.setBackground(Color.DARK_GRAY);
 
@@ -81,7 +77,6 @@ class ViewControl extends JFrame implements ActionListener {
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
                 if (e.getSource() == board[i][j]) {
-                    System.out.println(i);
                     Square sq = board[i][j];
                     game.move(sq.i, sq.j);
                     updateStatus();
@@ -89,16 +84,18 @@ class ViewControl extends JFrame implements ActionListener {
                 }
 
                 }
-
         }
-
     }
 
     void updateStatus() {
     for (int i=0; i<n; i++) {
         for (int j=0; j<n; j++) {
             Piece status = game.getStatus(i, j);
-            board[i][j].setImage(0);
+            if (status == null) {
+                board[i][j].setIcon(null); // Not sure if necessary.
+                continue;
+            }
+            board[i][j].setImage(status.name);
         }
     }
 }
@@ -107,32 +104,11 @@ class ViewControl extends JFrame implements ActionListener {
         String mess = game.getMessage();
         message.setText(mess);
     }
-    void paintBoard() {
-        this.chessPanel.setLayout(new GridLayout(8, 8));
-        Color black = new Color(190,97,78);
-        Color white = new Color(255,255,255);
-        Color c = black;
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+    public void initBoard() {
+        System.out.println("initboard");
+    }
 
-                if (i % 2 == 0) {
-                    if (j % 2 == 0) {
-                        c = white;
-                    } else {
-                        c = black;
-                    }
-                } else if (i % 2 == 1) {
-                    if (j % 2 == 0) {
-                        c = black;
-                    } else {
-                        c = white;
-                    }
-                }
 
-                Square square = new Square(i, j);
-                this.board[i][j] = square;
-                this.chessPanel.add(square);
 
-            }
-        }}}
+}

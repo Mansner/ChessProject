@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Objects;
 import javax.swing.*;
 import javax.swing.ImageIcon;
 
@@ -19,6 +20,10 @@ public class Square extends JButton {
             new ImageIcon("img/king.png"),
             new ImageIcon("img/bking.png")
     };
+
+    public JLabel icon;
+
+
     public int i;
 
     public int j;
@@ -35,7 +40,13 @@ public class Square extends JButton {
         setVisible(true);
     }
 
-    public void setImage(int identifier) {
-        this.setIcon(icons[1]);
+    public void setImage(String name) {
+        ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("img/"+ name +".png")));
+        icon = new JLabel(img);
+        this.add(icon);
+    }
+
+    public void removeImage() {
+        this.remove(icon);
     }
 }

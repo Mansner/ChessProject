@@ -1,7 +1,7 @@
 public class Bishop extends Piece{
 
-    public Bishop(int i, int j, boolean isWhite){
-        super(i, j, isWhite);
+    public Bishop(int i, int j, boolean isWhite, String name){
+        super(i, j, isWhite, name);
         if (isWhite) {
             this.value = 6;
         } else {
