@@ -72,7 +72,7 @@ class ViewControl extends JFrame implements ActionListener {
 
                 sq.addActionListener(this);
                 panel.add(sq);
-                sq.setBounds(j*100+100, i*100+100, 100, 100);
+                sq.setBounds(j*80+80, i*80+80, 80, 80);
                 board[i][j] = sq;
                 checkImg[i][j]=false;
             }
