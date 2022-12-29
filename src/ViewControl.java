@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.swing.*;
 import javax.swing.ImageIcon;
@@ -14,7 +15,10 @@ class ViewControl extends JFrame implements ActionListener {
     private Square[][] board;
     private JLabel message = new JLabel();
     private JPanel panel = new JPanel();
+    int xMove =-1;
+    int yMove=-1;
     private AbstractButton chessPanel;
+    private boolean[][] checkImg;
 
     public static void main(String[] u) {
         Boardgame game = new Chess();
@@ -44,6 +48,7 @@ class ViewControl extends JFrame implements ActionListener {
 
     void createButtons() {
         board = new Square[n][n];
+        checkImg = new boolean[n][n];
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
                 Square sq = new Square(i, j);
@@ -69,6 +74,7 @@ class ViewControl extends JFrame implements ActionListener {
                 panel.add(sq);
                 sq.setBounds(j*100+100, i*100+100, 100, 100);
                 board[i][j] = sq;
+                checkImg[i][j]=false;
             }
         }
     }
@@ -78,9 +84,21 @@ class ViewControl extends JFrame implements ActionListener {
             for (int j=0; j<n; j++) {
                 if (e.getSource() == board[i][j]) {
                     Square sq = board[i][j];
-                    game.move(sq.i, sq.j);
-                    updateStatus();
-                    updateMessage();
+
+                    if(game.move(sq.i, sq.j)) {
+                        xMove = sq.i;
+                        yMove = sq.i;
+                        continue;
+                    }
+                    if(game.drop(sq.i, sq.j)){
+                        updateStatus();
+                    }
+
+
+
+
+
+
                 }
 
                 }
@@ -88,16 +106,20 @@ class ViewControl extends JFrame implements ActionListener {
     }
 
     void updateStatus() {
-    for (int i=0; i<n; i++) {
-        for (int j=0; j<n; j++) {
-            Piece status = game.getStatus(i, j);
-            if (status == null) {
-                board[i][j].setIcon(null); // Not sure if necessary.
-                continue;
+        for (int i=0; i<n; i++) {
+            for (int j=0; j<n; j++) {
+                Piece status = game.getStatus(i, j);
+                if (status == null) {
+                    if (checkImg[i][j]) {
+                        board[i][j].removeImage();
+                        checkImg[i][j] = false;
+                    }
+                    continue;
+                }
+                board[i][j].setImage(status.name);
+                checkImg[i][j] = true;
             }
-            board[i][j].setImage(status.name);
         }
-    }
 }
 
     void updateMessage() {
