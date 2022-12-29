@@ -47,7 +47,6 @@ public class Square extends JButton {
     }
 
     public void removeImage() {
-
         this.remove(icon);
     }
 }
