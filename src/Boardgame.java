@@ -1,3 +1,5 @@
+import java.awt.event.MouseEvent;
+
 public interface Boardgame {
 
     public boolean move(int x, int y);
