@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import javax.swing.*;
@@ -15,8 +16,7 @@ class ViewControl extends JFrame implements ActionListener {
     private Square[][] board;
     private JLabel message = new JLabel();
     private JPanel panel = new JPanel();
-    int xMove =-1;
-    int yMove=-1;
+
     private AbstractButton chessPanel;
     private boolean[][] checkImg;
 
@@ -35,6 +35,7 @@ class ViewControl extends JFrame implements ActionListener {
         add(panel);
 
         createButtons();
+        colourBoard();
         updateStatus();
 
 
@@ -54,22 +55,6 @@ class ViewControl extends JFrame implements ActionListener {
                 Square sq = new Square(i, j);
                 sq.setBorderPainted(false);
                 sq.setOpaque(true);
-
-                if (i % 2 == 0) {
-                    if (j % 2 == 0) {
-                        sq.setBackground(Color.LIGHT_GRAY);
-                    } else {
-                        sq.setBackground(Color.DARK_GRAY);
-
-                    }
-                } else if (i % 2 == 1) {
-                    if (j % 2 == 0) {
-                        sq.setBackground(Color.DARK_GRAY);
-                    } else {
-                        sq.setBackground(Color.LIGHT_GRAY);
-                    }
-                }
-
                 sq.addActionListener(this);
                 panel.add(sq);
                 sq.setBounds(j*80+80, i*80+80, 80, 80);
@@ -79,52 +64,77 @@ class ViewControl extends JFrame implements ActionListener {
         }
     }
 
+    void colourBoard() {
+        for (int i=0; i<n; i++) {
+            for (int j=0; j<n; j++) {
+                if (i % 2 == 0) {
+                    if (j % 2 == 0) {
+                        board[i][j].setBackground(Color.LIGHT_GRAY);
+                    } else {
+                        board[i][j].setBackground(Color.DARK_GRAY);
+                    }
+                } else if (i % 2 == 1) {
+                    if (j % 2 == 0) {
+                        board[i][j].setBackground(Color.DARK_GRAY);
+                    } else {
+                        board[i][j].setBackground(Color.LIGHT_GRAY);
+                    }
+                }
+            }
+        }
+    }
+
     public void actionPerformed(ActionEvent e) {
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
                 if (e.getSource() == board[i][j]) {
                     Square sq = board[i][j];
-
                     if(game.move(sq.i, sq.j)) {
-                        xMove = sq.i;
-                        yMove = sq.i;
                         System.out.println("move");
+                        colourBoard();
+                        updatePosPos(sq.i,sq.j);
                         continue;
                     }
                     if(game.drop(sq.i, sq.j)){
                         updateStatus();
                         System.out.println("drop");
                     }
-
-
-
-
-
-
                 }
 
             }
         }
     }
 
-    void updateStatus() {
+    void updatePosPos(int i, int j) {
+        Piece status = game.getStatus(i, j);
+        System.out.println(status.isWhite);
+
+        board[i+1][j+1].setBackground(Color.green);
+    }
+
+
+        void updateStatus() {
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
                 Piece status = game.getStatus(i, j);
-                if (status == null) {
-                    if (checkImg[i][j]) {
+                if (status == null) { // deletes the icon if there is no pice object there.
+                    if (checkImg[i][j]) { // but only if there is an icon there.
                         board[i][j].removeImage();
                         checkImg[i][j] = false;
-                        board[i][j].validate();
                     }
                     continue;
                 }
-                if(!checkImg[i][j]){
+                if(checkImg[i][j]){ //deletes all images (makes eating the opposite pices possible).
+                    board[i][j].removeImage();
+                    checkImg[i][j] = false;
+                }
+                if(!checkImg[i][j]){ //refresehs all the images.
                     board[i][j].setImage(status.name);
                     checkImg[i][j] = true;
                 }
             }
         }
+        colourBoard();
         panel.revalidate();
         panel.repaint();
         System.out.println(Arrays.deepToString(checkImg));

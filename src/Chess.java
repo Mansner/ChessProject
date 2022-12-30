@@ -14,25 +14,30 @@ public class Chess implements Boardgame {
 
         if (this.board[x][y]!=null) {
             if (checkTurn(x,y)){
+                System.out.println("tru");
                 xMove = x;
                 yMove = y;
                 piceMove=this.board[x][y];
                 return true;
             }
-
         }
         return false;
     }
 
 
     public boolean drop(int x, int y) {
-        this.board[x][y]=piceMove;
-        this.board[xMove][yMove]=null;
-        xMove = -1;
-        yMove = -1;
-        piceMove=null;
-        isWhiteTurn= !isWhiteTurn;
-        return true;
+        if(checkTurn(xMove,yMove)){
+            System.out.println(this.board[x][y]);
+            this.board[x][y]=piceMove;
+            this.board[xMove][yMove]=null;
+            xMove = -1;
+            yMove = -1;
+            piceMove=null;
+            isWhiteTurn= !isWhiteTurn;
+            return true;
+        }
+        return false;
+
     }
 
     private boolean checkTurn(int i, int j){

@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class King extends Piece{
 
     public King(int i, int j, boolean isWhite, String name){
@@ -10,8 +12,9 @@ public class King extends Piece{
     }
 
     @Override
-    public void updateLegalMoves(Piece[][] board) {
+    public List<Integer> updateLegalMoves(Piece[][] board) {
 
+        return null;
     }
 }
 

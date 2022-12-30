@@ -1,4 +1,8 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bishop extends Piece{
+    List<Integer> list=new ArrayList<Integer>();
 
     public Bishop(int i, int j, boolean isWhite, String name){
         super(i, j, isWhite, name);
@@ -10,8 +14,14 @@ public class Bishop extends Piece{
     }
 
     @Override
-    public void updateLegalMoves(Piece[][] board) {
+    public List<Integer> updateLegalMoves(Piece[][] board) {
+        return null;
+    }
 
+    public List<Integer> updateLegalMoves() {
+        list.add(1);
+        list.add(1);
+        return list;
     }
 }
 

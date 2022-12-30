@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Piece {
 
@@ -79,7 +80,7 @@ public abstract class Piece {
         return true;
     }
 
-    public abstract void updateLegalMoves(Piece[][] board);
+    public abstract List<Integer> updateLegalMoves(Piece[][] board);
 
     public void clearLegalMoves() {
         this.legalMoves.clear();

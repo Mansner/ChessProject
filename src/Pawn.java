@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Pawn extends Piece{
 
     public Pawn(int i, int j, boolean isWhite, String name){
@@ -10,7 +12,8 @@ public class Pawn extends Piece{
     }
 
     @Override
-    public void updateLegalMoves(Piece[][] board) {
+    public List<Integer> updateLegalMoves(Piece[][] board) {
 
+        return null;
     }
 }
