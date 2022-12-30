@@ -7,14 +7,19 @@ public class Chess implements Boardgame {
     int yDrop = -1;
     Piece piceMove;
     Piece piceDrop;
+    boolean isWhiteTurn = true;
 
     public boolean move(int x, int y) {
+        System.out.println(this.board[x][y]);
 
         if (this.board[x][y]!=null) {
-            xMove = x;
-            yMove = y;
-            piceMove=this.board[x][y];
-            return true;
+            if (checkTurn(x,y)){
+                xMove = x;
+                yMove = y;
+                piceMove=this.board[x][y];
+                return true;
+            }
+
         }
         return false;
     }
@@ -26,8 +31,15 @@ public class Chess implements Boardgame {
         xMove = -1;
         yMove = -1;
         piceMove=null;
+        isWhiteTurn= !isWhiteTurn;
         return true;
+    }
 
+    private boolean checkTurn(int i, int j){
+        if(this.board[i][j].isWhite == isWhiteTurn){
+            return true;
+        }
+        return false;
     }
 
     public Piece getStatus(int i, int j) {

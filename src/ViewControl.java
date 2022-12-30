@@ -115,13 +115,19 @@ class ViewControl extends JFrame implements ActionListener {
                     if (checkImg[i][j]) {
                         board[i][j].removeImage();
                         checkImg[i][j] = false;
+                        board[i][j].validate();
                     }
                     continue;
                 }
-                board[i][j].setImage(status.name);
-                checkImg[i][j] = true;
+                if(!checkImg[i][j]){
+                    board[i][j].setImage(status.name);
+                    checkImg[i][j] = true;
+                }
             }
         }
+        panel.revalidate();
+        panel.repaint();
+        System.out.println(Arrays.deepToString(checkImg));
     }
 
     void updateMessage() {
