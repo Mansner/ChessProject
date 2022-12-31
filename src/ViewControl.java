@@ -107,9 +107,12 @@ class ViewControl extends JFrame implements ActionListener {
 
     void updatePosPos(int i, int j) {
         Piece status = game.getStatus(i, j);
-        System.out.println(status.isWhite);
-
-        board[i+1][j+1].setBackground(Color.green);
+        ArrayList<ArrayList<Integer>> list = status.sendLegalMoves();
+        for (ArrayList<Integer> ele :list) { // iterate through all moves
+            Integer x = ele.get(0);
+            Integer y = ele.get(1);
+            board[i+x][j+y].setBackground(Color.green);
+        }
     }
 
 

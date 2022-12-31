@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Piece {
 
@@ -18,93 +17,24 @@ public abstract class Piece {
         this.name = name;
     }
 
-    public void firstMoveHasBeenMade() {
-        this.firstMove = false;
-    }
-
-    public void addAllTheMoves(Piece[][] board, int x, int y, int range) {
-        for (int a = 1; a < range; a++) {
-            if (this.addIfEmpty(board, this.i + x*a, this.j + y*a)) {
-                continue;
-            }
-            else {
-                this.addIfOpposite(board, this.i + x*a, this.j + y*a);
-                break;
-            }
-        }
-    }
-
-    public boolean addIfOpposite(Piece[][] board, int a, int b) {
-        Piece destinationSquare;
-
-        try {
-            destinationSquare = board[a][b];
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
-            return false;
-        }
-
-        // THIS SOLVES A PROBLEM OF NULLPOINTEREXCEPTION FOR PAWN.java
-        // BUT MAYBE WE DON'T NEED THIS HERE...? MAYBE WE CAN DO THIS
-        // CHECK INSIDE OF PAWN.JAVA?
-        if (destinationSquare == null) {
-            return false; // This should solve the problem for pawn.
-        }
-
-        if (this.getIdentifier() % 2 != destinationSquare.getIdentifier() % 2) {
-            return this.addMove(a, b);
-        }
-        return false;
-    }
-
-    public boolean addIfEmpty(Piece[][] board, int a, int b) {
-        Piece destinationSquare;
-
-        try {
-            destinationSquare = board[a][b];
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
-            return false;
-        }
-
-        if (destinationSquare == null) {
-            return this.addMove(a, b);
-        }
-        return false;
-    }
-
     public boolean addMove(int a, int b) {
         ArrayList<Integer> move = new ArrayList<Integer>();
-        move.add(a); move.add(b);
+        move.add(a);
+        move.add(b);
         this.legalMoves.add(move);
         return true;
     }
 
-    public abstract List<Integer> updateLegalMoves(Piece[][] board);
-
-    public void clearLegalMoves() {
-        this.legalMoves.clear();
-    }
-
     public ArrayList<ArrayList<Integer>> getLegalMoves() {
-        return this.legalMoves;
+        return legalMoves;
     }
 
-    public int getIdentifier() {
-        // 0 for white pawn, 1 for black pawn, etc...
-        return this.value;
+
+    public ArrayList<ArrayList<Integer>> sendLegalMoves() { // tweaks the moves that is true for all pieces
+        legalMoves = getLegalMoves();
+
+        return legalMoves;
     }
 
-    public void seti(int i) {
-        this.i = i;
-    }
-    public int geti() {
-        return this.i;
-    }
-    public void setj(int j) {
-        this.j = j;
-    }
-    public int getj() {
-        return this.j;
-    }
 }
+

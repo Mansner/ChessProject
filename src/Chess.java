@@ -9,11 +9,12 @@ public class Chess implements Boardgame {
     Piece piceDrop;
     boolean isWhiteTurn = true;
 
-    public boolean move(int x, int y) {
+    public boolean move(int x, int y) { //redan här genereras alla legal moves från Piece
         System.out.println(this.board[x][y]);
 
         if (this.board[x][y]!=null) {
             if (checkTurn(x,y)){
+
                 System.out.println("tru");
                 xMove = x;
                 yMove = y;
@@ -25,7 +26,7 @@ public class Chess implements Boardgame {
     }
 
 
-    public boolean drop(int x, int y) {
+    public boolean drop(int x, int y) { // ska kolla så man fakktiskt lägger på en plats som e tillåten
         if(checkTurn(xMove,yMove)){
             System.out.println(this.board[x][y]);
             this.board[x][y]=piceMove;

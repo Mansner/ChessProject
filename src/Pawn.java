@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pawn extends Piece{
@@ -10,10 +11,11 @@ public class Pawn extends Piece{
             this.value = 7;
         }
     }
-
-    @Override
-    public List<Integer> updateLegalMoves(Piece[][] board) {
-
-        return null;
+    public ArrayList<ArrayList<Integer>> getLegalMoves() {
+        this.addMove(1,1); // SouthEast
+        this.addMove(1,-1); // SouthEast
+        System.out.println(legalMoves);
+        return legalMoves;
     }
+
 }

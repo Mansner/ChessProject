@@ -10,11 +10,5 @@ public class King extends Piece{
             this.value = 7;
         }
     }
-
-    @Override
-    public List<Integer> updateLegalMoves(Piece[][] board) {
-
-        return null;
-    }
 }
 

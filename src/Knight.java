@@ -11,11 +11,7 @@ public class Knight extends Piece{
         }
     }
 
-    @Override
-    public List<Integer> updateLegalMoves(Piece[][] board) {
 
-        return null;
-    }
 }
 
 

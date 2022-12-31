@@ -11,10 +11,6 @@ public class Rook extends Piece{
         }
     }
 
-    @Override
-    public List<Integer> updateLegalMoves(Piece[][] board) {
 
-        return null;
-    }
 }
 

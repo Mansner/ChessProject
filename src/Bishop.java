@@ -13,16 +13,13 @@ public class Bishop extends Piece{
         }
     }
 
-    @Override
-    public List<Integer> updateLegalMoves(Piece[][] board) {
-        return null;
+    public ArrayList<ArrayList<Integer>> getLegalMoves() { //tweaks the moves that are unique to the given piece
+        this.addMove(1,-2); // SouthEast
+        this.addMove(1,2); // SouthEast
+        System.out.println(legalMoves);
+        return legalMoves;
     }
 
-    public List<Integer> updateLegalMoves() {
-        list.add(1);
-        list.add(1);
-        return list;
-    }
 }
 
 
