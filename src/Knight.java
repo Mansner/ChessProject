@@ -40,7 +40,7 @@ public class Knight extends Piece{
                 else{
                     System.out.println("update");
                     this.addMove(1,-2);}
-            }
+            }}
             if (i<6){
                 if (j<7){
                     if (board[i + 2][j + 1]!=null)
@@ -64,7 +64,7 @@ public class Knight extends Piece{
                     else{
                         System.out.println("update");
                         this.addMove(2,-1);}
-        }}}}
+        }}}
 
             if (i>0){
                 if (j<6){
