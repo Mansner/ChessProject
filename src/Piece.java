@@ -23,6 +23,7 @@ public abstract class Piece {
         ArrayList<Integer> move = new ArrayList<Integer>();
         move.add(a);
         move.add(b);
+        System.out.println(move);
         this.legalMoves.add(move);
     }
 
