@@ -13,69 +13,96 @@ public class Rook extends Piece{
     }
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) {
         System.out.println("update");
-        int xf=0;
-        int xb=0;
-        int yl=0;
-        int yr=0;
+        int yf=0;
+        int yb=0;
+        int xl=0;
+        int xr=0;
+        int y=i;
+        int x=j;
 
         boolean b=true;
+        System.out.println(board[y][x+1]);
+        if (i<7){
+            while (b){
+                System.out.println("fram");
+                if (board[y+1][x]==null){
+                    y+=1;
+                    yf+=1;
+                    this.addMove(yf,0);
+                    if (y==7){
+                        b=false;
+                        y=i;
+                        x=j;
+                    }
+                }
+                else {
+                    b=false;
+                }
+            }}
+            b=true;
+            System.out.println(i);
+            if (i>1){
+            while (b){System.out.println("bak sant");
+                if (board[y-1][x]==null){
+                    System.out.println("bak");
+                    y-=1;
+                    yb-=1;
+                    this.addMove(yb,0);
+                    if (y==0){
+                        b=false;
+                        y=i;
+                        x=j;
+                    }
+                }
+                else {
+                    b=false;
+                }
+            }}
+            b=true;
+            if (j>1){
+            while (b){
+                if (board[y][x-1]==null){
+                    System.out.println("vänster");
+                    x-=1;
+                    xl-=1;
+                    this.addMove(0,xl);
+                    if (x==0){
+                        b=false;
+                        y=i;
+                        x=j;
+                    }
+                }
+                else {
+                    b=false;
+                }
+            }}
 
-        if(this.isWhite){
-            while (b){
-                if (board[i+1][j]==null){
-                    i+=1;
-                    xf+=1;
-                    if (i==0){
-                        b=false;
-                    }
-                }
-                else {
-                    b=false;
-                }
-            }
-            this.addMove(xf,0);
             b=true;
+        if (j<7){
             while (b){
-                if (board[i-1][j]==null){
-                    i-=1;
-                    xb-=1;
-                    if (i==8){
+                System.out.println("höger");
+                if (board[y][x+1]==null){
+
+                    System.out.println(board[y][x+1]);
+                    x+=1;
+                    xr+=1;
+                    this.addMove(0,xr);
+                    if (x==7){
                         b=false;
+                        y=i;
+                        x=j;
                     }
                 }
                 else {
                     b=false;
                 }
-            }
-            this.addMove(xb,0);
-            b=true;
-            while (b){
-                if (board[i][j-1]==null){
-                    j-=1;
-                    yl-=1;
-                    if (j==0){
-                        b=false;
-                    }
-                }
-                else {
-                    b=false;
-                }
-            }
-            this.addMove(0,yl);
-            b=true;
-            while (b){
-                if (board[i][j+1]==null){
-                    j+=1;
-                    yr+=1;
-                    if (j==8){
-                        b=false;
-                    }
-                }
-                else {
-                    b=false;
-                }
-            }
-            this.addMove(0,yr);
+            }}
+            System.out.println("update");
+
+
+
+
+
 
 
 
@@ -130,7 +157,7 @@ public class Rook extends Piece{
 //
 
 
-}
+
         return legalMoves;
     }}
 
