@@ -53,25 +53,63 @@ public class Knight extends Piece{
                     }
 
                 if (j>0){
-                    System.out.println("update4");
-                    this.addMove(2,-1);
+                    if (board[i + 2][j - 1]!=null)
+                    {if (board[i + 2][j - 1].isWhite){
+                    }
+                    else{System.out.println("update");
+                        this.addMove(2,-1);}
+                    }
+                    else{
+                        System.out.println("update");
+                        this.addMove(2,-1);}
         }}}}
 
             if (i>0){
                 if (j<7){
-                    System.out.println("update");
-                    this.addMove(-1,2);}
+                    if (board[i - 1][j + 2]!=null)
+                    {if (board[i - 1][j + 2].isWhite){
+                    }
+                    else{System.out.println("update");
+                        this.addMove(-1,2);}
+                    }
+                    else{
+                        System.out.println("update");
+                        this.addMove(-1,2);}
+
                 if (j>0) {
-                    System.out.println("update");
-                    this.addMove( -1, -2);
+                    if (board[i -1][j -2]!=null)
+                    {if (board[i-1][j-2].isWhite){
+                    }
+                    else{System.out.println("update");
+                        this.addMove(-1,-2);}
+                    }
+                    else{
+                        System.out.println("update");
+                        this.addMove(-1,-2);}
+                }
             }
             if (i>1){
                 if (j<7){
-                    System.out.println("update");
-                    this.addMove(-2,1);}
+                    if (board[i-2][j + 1]!=null)
+                    {if (board[i-2][j + 1].isWhite){
+                    }
+                    else{System.out.println("update");
+                        this.addMove(-2,1);}
+                    }
+                    else{
+                        System.out.println("update");
+                        this.addMove(-2,1);}
                 if (j>0) {
-                    System.out.println("update");
-                    this.addMove(-2, -1);
+                    if (board[i-2][j - 1]!=null)
+                    {if (board[i - 2][j - 1].isWhite){
+                    }
+                    else{System.out.println("update");
+                        this.addMove(-2,-1);}
+                    }
+                    else{
+                        System.out.println("update");
+                        this.addMove(-2,-1);}
+                }
                 }}}
         return legalMoves;
 
