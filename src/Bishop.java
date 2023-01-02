@@ -13,10 +13,9 @@ public class Bishop extends Piece{
         }
     }
 
-    public ArrayList<ArrayList<Integer>> getLegalMoves() { //tweaks the moves that are unique to the given piece
+    public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board) { //tweaks the moves that are unique to the given piece
         this.addMove(1,-2); // SouthEast
         this.addMove(1,2); // SouthEast
-        System.out.println(legalMoves);
         return legalMoves;
     }
 

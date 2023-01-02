@@ -27,7 +27,6 @@ public class Square extends JButton {
         ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("img/"+ name +".png")));
         this.icon = new JLabel(img);
         this.add(this.icon);
-        System.out.println(this.getComponentCount());
     }
 
     public void removeImage() {

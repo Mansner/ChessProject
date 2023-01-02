@@ -4,11 +4,13 @@ public abstract class Piece {
 
     public int i;
     public int j;
+
     public String name;
     public int value = -1;
     public boolean isWhite;
     public boolean firstMove = true;
     public ArrayList<ArrayList<Integer>> legalMoves = new ArrayList<ArrayList<Integer>>();
+
 
     public Piece(int i, int j, boolean isWhite, String name) {
         this.i = i;
@@ -17,22 +19,24 @@ public abstract class Piece {
         this.name = name;
     }
 
-    public boolean addMove(int a, int b) {
+    public void addMove(int a, int b) {
         ArrayList<Integer> move = new ArrayList<Integer>();
         move.add(a);
         move.add(b);
         this.legalMoves.add(move);
-        return true;
     }
 
-    public ArrayList<ArrayList<Integer>> getLegalMoves() {
+    public void removeAllMoves() {
+        this.legalMoves.clear();
+        System.out.println(legalMoves);
+    }
+
+    public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) {
         return legalMoves;
     }
 
 
     public ArrayList<ArrayList<Integer>> sendLegalMoves() { // tweaks the moves that is true for all pieces
-        legalMoves = getLegalMoves();
-
         return legalMoves;
     }
 

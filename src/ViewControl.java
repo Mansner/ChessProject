@@ -92,7 +92,8 @@ class ViewControl extends JFrame implements ActionListener {
                     if(game.move(sq.i, sq.j)) {
                         System.out.println("move");
                         colourBoard();
-                        updatePosPos(sq.i,sq.j);
+                        updatePosPos(sq.i, sq.j);
+
                         continue;
                     }
                     if(game.drop(sq.i, sq.j)){
@@ -100,7 +101,6 @@ class ViewControl extends JFrame implements ActionListener {
                         System.out.println("drop");
                     }
                 }
-
             }
         }
     }
@@ -140,7 +140,6 @@ class ViewControl extends JFrame implements ActionListener {
         colourBoard();
         panel.revalidate();
         panel.repaint();
-        System.out.println(Arrays.deepToString(checkImg));
     }
 
     void updateMessage() {

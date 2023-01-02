@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class Chess implements Boardgame {
     private final Piece[][] board = new Piece[8][8];
 
@@ -8,12 +11,17 @@ public class Chess implements Boardgame {
     Piece piceMove;
     Piece piceDrop;
     boolean isWhiteTurn = true;
+    ArrayList<ArrayList<Integer>> legalMoves;
 
     public boolean move(int x, int y) { //redan här genereras alla legal moves från Piece
         System.out.println(this.board[x][y]);
 
         if (this.board[x][y]!=null) {
             if (checkTurn(x,y)){
+                ArrayList<ArrayList<Integer>> legal = this.board[x][y].getLegalMoves(board, x, y);
+                legalMoves = legal;
+                System.out.println(legalMoves);
+                System.out.println(legal);
 
                 System.out.println("tru");
                 xMove = x;
@@ -27,13 +35,21 @@ public class Chess implements Boardgame {
 
 
     public boolean drop(int x, int y) { // ska kolla så man fakktiskt lägger på en plats som e tillåten
+
+        if(!checkDrop(x,y)){
+            return false;
+        }
         if(checkTurn(xMove,yMove)){
             System.out.println(this.board[x][y]);
             this.board[x][y]=piceMove;
+            this.board[xMove][yMove].removeAllMoves();
             this.board[xMove][yMove]=null;
             xMove = -1;
             yMove = -1;
             piceMove=null;
+            this.board[x][y].getLegalMoves(board, x, y);
+            checkKing(x, y);
+            this.board[x][y].removeAllMoves();
             isWhiteTurn= !isWhiteTurn;
             return true;
         }
@@ -41,9 +57,43 @@ public class Chess implements Boardgame {
 
     }
 
+    private boolean checkKing(int x, int y){
+        System.out.println(legalMoves);
+        for (ArrayList<Integer> list : legalMoves) {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    Piece pice = board[i][j];
+                    if(pice!=null){
+                        if(Objects.equals(pice.name, "king") || Objects.equals(pice.name, "bking")){
+                            if(list.get(0) + x == i & list.get(1) + y == j){
+                                if(pice.isWhite != isWhiteTurn){
+                                    System.out.println("Kingen är i fara");
+                                }
+                    }
+                        }
+                    }
+                }
+
+            }
+            }
+        return false;
+    }
+
     private boolean checkTurn(int i, int j){
         if(this.board[i][j].isWhite == isWhiteTurn){
             return true;
+        }
+        return false;
+    }
+
+    private boolean checkDrop(int x, int y){
+        System.out.println(legalMoves);
+        for (ArrayList<Integer> list : legalMoves) {
+            System.out.println("l");
+            if(list.get(0) + xMove == x & list.get(1) + yMove == y){
+                System.out.println("ok");
+                return true;
+            }
         }
         return false;
     }
