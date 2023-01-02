@@ -42,22 +42,36 @@ public class Chess implements Boardgame {
         if(checkTurn(xMove,yMove)){
             System.out.println(this.board[x][y]);
             this.board[x][y]=piceMove;
+            System.out.println(this.board[x][y]);
             this.board[xMove][yMove].removeAllMoves();
             this.board[xMove][yMove]=null;
             xMove = -1;
             yMove = -1;
-            piceMove=null;
             this.board[x][y].getLegalMoves(board, x, y);
             checkKing(x, y);
+            checkPromovera(x,y);
             this.board[x][y].removeAllMoves();
+            piceMove=null;
             isWhiteTurn= !isWhiteTurn;
             return true;
         }
         return false;
-
     }
 
-    private boolean checkKing(int x, int y){
+    private void checkPromovera(int x, int y){
+        if(Objects.equals(piceMove.name, "pawn")){
+            if(x==7){
+                this.board[x][y] = new Queen(0, 3, true, "queen");
+            }
+        }
+        if(Objects.equals(piceMove.name, "bpawn")){
+            if(x==0){
+                this.board[x][y] = new Queen(0, 3, false, "bqueen");
+            }
+        }
+    }
+
+    private void checkKing(int x, int y){
         System.out.println(legalMoves);
         for (ArrayList<Integer> list : legalMoves) {
             for (int i = 0; i < 8; i++) {
@@ -73,10 +87,8 @@ public class Chess implements Boardgame {
                         }
                     }
                 }
-
             }
             }
-        return false;
     }
 
     private boolean checkTurn(int i, int j){

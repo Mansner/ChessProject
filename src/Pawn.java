@@ -15,7 +15,7 @@ public class Pawn extends Piece{
         System.out.println("update");
         int x;
         int y;
-        if(this.isWhite){
+        if(this.isWhite & i<7){
             if(board[i + 1][j] == null){
                 this.addMove(1,0); // one step forward
                 if(i == 1) { // not in the secound row, pawn cant move back so this soloution works
@@ -40,7 +40,7 @@ public class Pawn extends Piece{
             }
         }
 
-        if(!this.isWhite){
+        if(!this.isWhite & i > 0){
             if(board[i - 1][j] == null){
                 this.addMove(-1,0); // one step forward
                 if(i == 6) { // not in the secound row, pawn cant move back so this soloution works
