@@ -6,9 +6,9 @@ public class Pawn extends Piece{
     public Pawn(int i, int j, boolean isWhite, String name){
         super(i, j, isWhite, name);
         if (isWhite) {
-            this.value = 6;
+            this.value = 4;
         } else {
-            this.value = 7;
+            this.value = 5;
         }
     }
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) {
