@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Rook extends Piece{
@@ -21,7 +22,7 @@ public class Rook extends Piece{
         int x=j;
 
         boolean b=true;
-        System.out.println(board[y][x+1]);
+        System.out.println(i);
         if (i<7){
             while (b){
                 System.out.println("fram");
@@ -30,19 +31,27 @@ public class Rook extends Piece{
                     yf+=1;
                     this.addMove(yf,0);
                     if (y==7){
-                        b=false;
                         y=i;
                         x=j;
+                        break;
                     }
                 }
+                else if (board[y+1][x].isWhite!=this.isWhite) {
+                    yf += 1;
+                    this.addMove(yf, 0);
+                    y = i;
+                    x = j;
+                break;}
                 else {
                     b=false;
+                    y=i;
+                    x=j;
                 }
             }}
             b=true;
-            System.out.println(i);
             if (i>1){
-            while (b){System.out.println("bak sant");
+            while (b){
+                System.out.println(y);
                 if (board[y-1][x]==null){
                     System.out.println("bak");
                     y-=1;
@@ -54,26 +63,44 @@ public class Rook extends Piece{
                         x=j;
                     }
                 }
+                else if (board[y-1][x].isWhite!=this.isWhite) {
+                    y-=1;
+                    yb -= 1;
+                    this.addMove(yb, 0);
+                    y = i;
+                    x = j;
+                    break;}
                 else {
                     b=false;
+                    y=i;
+                    x=j;
                 }
             }}
             b=true;
-            if (j>1){
+            if (j>0){
             while (b){
-                if (board[y][x-1]==null){
+                System.out.println(y);
+                if (board[y][x-1]==null) {
                     System.out.println("vänster");
-                    x-=1;
-                    xl-=1;
-                    this.addMove(0,xl);
-                    if (x==0){
-                        b=false;
-                        y=i;
-                        x=j;
+                    x -= 1;
+                    xl -= 1;
+                    this.addMove(0, xl);
+                    if (x == 0) {
+                        b = false;
+                        y = i;
+                        x = j;
                     }
-                }
-                else {
+                } else if (board[y][x-1].isWhite!=this.isWhite) {
+                    xl -= 1;
+                    this.addMove(0, xl);
+                    y = i;
+                    x = j;
+                    break;
+
+                } else {
                     b=false;
+                    y=i;
+                    x=j;
                 }
             }}
 
@@ -81,20 +108,30 @@ public class Rook extends Piece{
         if (j<7){
             while (b){
                 System.out.println("höger");
+                System.out.println(board[y][x+1]);
+                System.out.println(y);
                 if (board[y][x+1]==null){
-
-                    System.out.println(board[y][x+1]);
+                    System.out.println("h1");
                     x+=1;
                     xr+=1;
                     this.addMove(0,xr);
                     if (x==7){
+                        System.out.println("h2");
                         b=false;
                         y=i;
                         x=j;
                     }
                 }
+                else if (board[y][x+1].isWhite!=this.isWhite) {
+                    xr += 1;
+                    this.addMove(0, xr);
+                    System.out.println("h3");
+                    break;}
                 else {
                     b=false;
+                    y=i;
+                    x=j;
+                    System.out.println("h4");
                 }
             }}
             System.out.println("update");
