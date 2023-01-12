@@ -13,32 +13,27 @@ public class Knight extends Piece{
 
     }
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) {
-        System.out.println("update");
-        int x;
-        int y;
-        System.out.println(i);
-        System.out.println(j);
         if(i<7){
             if (j<6){
                 if (board[i + 1][j + 2]!=null)
                 {if (board[i + 1][j + 2].isWhite==this.isWhite){
                 }
-                else{System.out.println("update");
+                else{;
                     this.addMove(1,2);}
                 }
                 else{
-                System.out.println("update");
+                ;
                 this.addMove(1,2);}
 
             if (j>1){
                 if (board[i + 1][j - 2]!=null)
                 {if (board[i + 1][j - 2].isWhite==this.isWhite){
                 }
-                else{System.out.println("update");
+                else{;
                     this.addMove(1,-2);}
                 }
                 else{
-                    System.out.println("update");
+
                     this.addMove(1,-2);}
             }}
             if (i<6){
@@ -46,11 +41,11 @@ public class Knight extends Piece{
                     if (board[i + 2][j + 1]!=null)
                     {if (board[i + 2][j + 1].isWhite==this.isWhite){
                     }
-                    else{System.out.println("update");
+                    else{
                         this.addMove(2,1);}
                     }
                     else{
-                        System.out.println("update");
+
                         this.addMove(2,1);}
                     }
 
@@ -58,11 +53,11 @@ public class Knight extends Piece{
                     if (board[i + 2][j - 1]!=null)
                     {if (board[i + 2][j - 1].isWhite==this.isWhite){
                     }
-                    else{System.out.println("update");
+                    else{
                         this.addMove(2,-1);}
                     }
                     else{
-                        System.out.println("update");
+
                         this.addMove(2,-1);}
         }}}
 
@@ -71,22 +66,22 @@ public class Knight extends Piece{
                     if (board[i - 1][j + 2]!=null)
                     {if (board[i - 1][j + 2].isWhite==this.isWhite){
                     }
-                    else{System.out.println("update");
+                    else{
                         this.addMove(-1,2);}
                     }
                     else{
-                        System.out.println("update");
+
                         this.addMove(-1,2);}
 
                 if (j>1) {
                     if (board[i -1][j -2]!=null)
                     {if (board[i-1][j-2].isWhite==this.isWhite){
                     }
-                    else{System.out.println("update");
+                    else{
                         this.addMove(-1,-2);}
                     }
                     else{
-                        System.out.println("update");
+
                         this.addMove(-1,-2);}
                 }
             }
@@ -95,21 +90,20 @@ public class Knight extends Piece{
                     if (board[i-2][j + 1]!=null)
                     {if (board[i-2][j + 1].isWhite== this.isWhite){
                     }
-                    else{System.out.println("update");
+                    else{
                         this.addMove(-2,1);}
                     }
                     else{
-                        System.out.println("update");
+
                         this.addMove(-2,1);}
                 if (j>0) {
                     if (board[i-2][j - 1]!=null)
                     {if (board[i - 2][j - 1].isWhite== this.isWhite){
                     }
-                    else{System.out.println("update");
+                    else{
                         this.addMove(-2,-1);}
                     }
                     else{
-                        System.out.println("update");
                         this.addMove(-2,-1);}
                 }
                 }}}
