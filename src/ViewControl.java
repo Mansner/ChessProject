@@ -39,7 +39,7 @@ class ViewControl extends JFrame implements ActionListener {
         updateStatus();
 
 
-        message.setBounds(100, 50, 1000, 60);
+        message.setBounds(100, 20, 1000, 60);
         message.setFont(new Font("Arial", Font.BOLD, 20));
         panel.add(message);
 
@@ -92,13 +92,15 @@ class ViewControl extends JFrame implements ActionListener {
                     if(game.move(sq.i, sq.j)) {
                         colourBoard();
                         updatePosPos(sq.i, sq.j);
-
+                        updateMessage();
                         continue;
                     }
                     if(game.drop(sq.i, sq.j)){
                         updateStatus();
                         System.out.println("drop");
+                        updateMessage();
                     }
+                    updateMessage();
                 }
             }
         }
@@ -116,6 +118,7 @@ class ViewControl extends JFrame implements ActionListener {
 
 
         void updateStatus() {
+        updateMessage();
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
                 Piece status = game.getStatus(i, j);

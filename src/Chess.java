@@ -10,6 +10,8 @@ public class Chess implements Boardgame {
     boolean isWhiteTurn = true;
     ArrayList<ArrayList<Integer>> legalMoves;
 
+    String showMessage;
+
     public boolean move(int x, int y) { //redan här genereras alla legal moves från Piece
         System.out.println(this.board[x][y]);
 
@@ -20,6 +22,7 @@ public class Chess implements Boardgame {
                 xMove = x;
                 yMove = y;
                 piceMove=this.board[x][y];
+                showMessage=" ";
                 return true;
             }
         }
@@ -30,6 +33,7 @@ public class Chess implements Boardgame {
     public boolean drop(int x, int y) { // ska kolla så man fakktiskt lägger på en plats som e tillåten
 
         if(!checkDrop(x,y)){
+
             return false;
         }
         if(checkTurn(xMove,yMove)){
@@ -63,7 +67,6 @@ public class Chess implements Boardgame {
     }
 
     private void checkKing(int x, int y){
-        System.out.println(legalMoves);
         for (ArrayList<Integer> list : legalMoves) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
@@ -72,7 +75,7 @@ public class Chess implements Boardgame {
                         if(Objects.equals(pice.name, "king") || Objects.equals(pice.name, "bking")){
                             if(list.get(0) + x == i & list.get(1) + y == j){
                                 if(pice.isWhite != isWhiteTurn){
-                                    System.out.println("Kingen är i fara");
+                                    showMessage="Kingen är i fara";
                                 }
                     }
                         }
@@ -86,15 +89,22 @@ public class Chess implements Boardgame {
         if(this.board[i][j].isWhite == isWhiteTurn){
             return true;
         }
+        showMessage="Vald pjäs är fel färg, välj igen";
         return false;
     }
 
     private boolean checkDrop(int x, int y){
         System.out.println(legalMoves);
+        if (legalMoves==null){
+            showMessage="Vald pjäs är fel färg, välj igen";
+            return false;
+        }
         for (ArrayList<Integer> list : legalMoves) {
             if(list.get(0) + xMove == x & list.get(1) + yMove == y){
+                showMessage=" ";
                 return true;
             }
+            showMessage="Felaktigt drag. Pjäsen kan inte gå till vald plats, välj igen";
         }
         return false;
     }
@@ -104,7 +114,8 @@ public class Chess implements Boardgame {
     }
 
     public String getMessage() {
-        return null;
+
+        return showMessage;
     }
 
     public void initBoard() {
