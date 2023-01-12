@@ -24,7 +24,6 @@ public class Bishop extends Piece{
         boolean b=true;
         if (i>0 && j>0){
             while (b){
-                System.out.println("uppVänster");
                 if (board[y-1][x-1]==null){
                     y-=1;
                     x-=1;
@@ -55,7 +54,6 @@ public class Bishop extends Piece{
         if (i>0 && j<7){
             while (b){
                 if (board[y-1][x+1]==null){
-                    System.out.println("upHöger");
                     y-=1;
                     x+=1;
                     up-=1;
@@ -84,7 +82,6 @@ public class Bishop extends Piece{
         left=0;
         if (i<7 && j>0){
             while (b){
-                System.out.println("nerVänster");
                 if (board[y+1][x-1]==null){
                     y+=1;
                     x-=1;
@@ -115,7 +112,6 @@ public class Bishop extends Piece{
         right=0;
         if (i<7 && j<7) {
             while (b) {
-                System.out.println("nerHöger");
                 if (board[y + 1][x + 1] == null) {
                     y += 1;
                     x += 1;
@@ -134,13 +130,7 @@ public class Bishop extends Piece{
                     break;
                 } else {
                     b = false;
-
-
-
                 }
-
             }
-
-
         }
         return legalMoves;}}

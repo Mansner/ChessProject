@@ -21,10 +21,8 @@ public class Rook extends Piece{
         int x=j;
 
         boolean b=true;
-        System.out.println(i);
         if (i<7){
             while (b){
-                System.out.println("fram");
                 if (board[y+1][x]==null){
                     y+=1;
                     yf+=1;
@@ -50,9 +48,7 @@ public class Rook extends Piece{
         b=true;
         if (i>1){
             while (b){
-                System.out.println(y);
                 if (board[y-1][x]==null){
-                    System.out.println("bak");
                     y-=1;
                     yb-=1;
                     this.addMove(yb,0);
@@ -63,7 +59,6 @@ public class Rook extends Piece{
                     }
                 }
                 else if (board[y-1][x].isWhite!=this.isWhite) {
-                    y-=1;
                     yb -= 1;
                     this.addMove(yb, 0);
                     y = i;
@@ -79,7 +74,6 @@ public class Rook extends Piece{
         if (j>0){
             while (b){
                 if (board[y][x-1]==null) {
-                    System.out.println("vänster");
                     x -= 1;
                     xleft -= 1;
                     this.addMove(0, xleft);
@@ -102,7 +96,6 @@ public class Rook extends Piece{
         b=true;
         if (j<7){
             while (b){
-                System.out.println("höger");
                 if (board[y][x+1]==null){
                     x+=1;
                     xright+=1;
@@ -121,7 +114,6 @@ public class Rook extends Piece{
                     x=j;
                 }
             }}
-        System.out.println("update");
         return legalMoves;
     }
 

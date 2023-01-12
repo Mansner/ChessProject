@@ -21,10 +21,8 @@ public class Queen extends Piece{
             int x=j;
 
             boolean b=true;
-            System.out.println(i);
             if (i<7){
                 while (b){
-                    System.out.println("fram");
                     if (board[y+1][x]==null){
                         y+=1;
                         yf+=1;
@@ -50,9 +48,7 @@ public class Queen extends Piece{
             b=true;
             if (i>1){
                 while (b){
-                    System.out.println(y);
                     if (board[y-1][x]==null){
-                        System.out.println("bak");
                         y-=1;
                         yb-=1;
                         this.addMove(yb,0);
@@ -79,7 +75,6 @@ public class Queen extends Piece{
             if (j>0){
                 while (b){
                     if (board[y][x-1]==null) {
-                        System.out.println("vänster");
                         x -= 1;
                         xleft -= 1;
                         this.addMove(0, xleft);
@@ -102,7 +97,6 @@ public class Queen extends Piece{
             b=true;
             if (j<7){
                 while (b){
-                    System.out.println("höger");
                     if (board[y][x+1]==null){
                         x+=1;
                         xright+=1;
@@ -121,7 +115,7 @@ public class Queen extends Piece{
                         x=j;
                     }
                 }}
-            System.out.println("update");
+
         int up=0;
         int right=0;
         int left=0;
@@ -132,7 +126,7 @@ public class Queen extends Piece{
         b=true;
         if (i>0 && j>0){
             while (b){
-                System.out.println("uppVänster");
+
                 if (board[y-1][x-1]==null){
                     y-=1;
                     x-=1;
@@ -163,7 +157,6 @@ public class Queen extends Piece{
         if (i>0 && j<7){
             while (b){
                 if (board[y-1][x+1]==null){
-                    System.out.println("upHöger");
                     y-=1;
                     x+=1;
                     up-=1;
@@ -192,7 +185,6 @@ public class Queen extends Piece{
         left=0;
         if (i<7 && j>0){
             while (b){
-                System.out.println("nerVänster");
                 if (board[y+1][x-1]==null){
                     y+=1;
                     x-=1;
@@ -223,7 +215,6 @@ public class Queen extends Piece{
         right=0;
         if (i<7 && j<7) {
             while (b) {
-                System.out.println("nerHöger");
                 if (board[y + 1][x + 1] == null) {
                     y += 1;
                     x += 1;
@@ -243,17 +234,11 @@ public class Queen extends Piece{
                 } else {
                     b = false;
 
-
-
                 }
-
             }
-
 
         }
         return legalMoves;
-
         }
-
     }
 

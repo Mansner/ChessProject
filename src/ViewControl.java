@@ -90,7 +90,6 @@ class ViewControl extends JFrame implements ActionListener {
                 if (e.getSource() == board[i][j]) {
                     Square sq = board[i][j];
                     if(game.move(sq.i, sq.j)) {
-                        System.out.println("move");
                         colourBoard();
                         updatePosPos(sq.i, sq.j);
 

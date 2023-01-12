@@ -6,10 +6,7 @@ public class Chess implements Boardgame {
 
     int xMove = -1;
     int yMove = -1;
-    int xDrop = -1;
-    int yDrop = -1;
     Piece piceMove;
-    Piece piceDrop;
     boolean isWhiteTurn = true;
     ArrayList<ArrayList<Integer>> legalMoves;
 
@@ -20,10 +17,6 @@ public class Chess implements Boardgame {
             if (checkTurn(x,y)){
                 ArrayList<ArrayList<Integer>> legal = this.board[x][y].getLegalMoves(board, x, y);
                 legalMoves = legal;
-                System.out.println(legalMoves);
-                System.out.println(legal);
-
-                System.out.println("tru");
                 xMove = x;
                 yMove = y;
                 piceMove=this.board[x][y];
@@ -40,9 +33,7 @@ public class Chess implements Boardgame {
             return false;
         }
         if(checkTurn(xMove,yMove)){
-            System.out.println(this.board[x][y]);
             this.board[x][y]=piceMove;
-            System.out.println(this.board[x][y]);
             this.board[xMove][yMove].removeAllMoves();
             this.board[xMove][yMove]=null;
             xMove = -1;
@@ -101,9 +92,7 @@ public class Chess implements Boardgame {
     private boolean checkDrop(int x, int y){
         System.out.println(legalMoves);
         for (ArrayList<Integer> list : legalMoves) {
-            System.out.println("l");
             if(list.get(0) + xMove == x & list.get(1) + yMove == y){
-                System.out.println("ok");
                 return true;
             }
         }
