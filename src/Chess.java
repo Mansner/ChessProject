@@ -96,7 +96,7 @@ public class Chess implements Boardgame {
     private boolean checkDrop(int x, int y){
         System.out.println(legalMoves);
         if (legalMoves==null){
-            showMessage="Vald pjäs är fel färg, välj igen";
+            showMessage="Felaktigt val! Vit färg börjar alltid i Schack";
             return false;
         }
         for (ArrayList<Integer> list : legalMoves) {
