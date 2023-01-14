@@ -47,8 +47,7 @@ public class Bishop extends Piece{
                     b=false;
                     y=i;
                     x=j;
-                }
-            }}
+                }}}
         b=true;
         up=0;
         if (i>0 && j<7){
@@ -63,8 +62,7 @@ public class Bishop extends Piece{
                         b=false;
                         y=i;
                         x=j;
-                    }
-                }
+                    }}
                 else if (board[y-1][x+1].isWhite!=this.isWhite) {
                     up -= 1;
                     right+=1;
@@ -76,8 +74,7 @@ public class Bishop extends Piece{
                     b=false;
                     y=i;
                     x=j;
-                }
-            }}
+                }}}
         b=true;
         left=0;
         if (i<7 && j>0){
@@ -92,8 +89,7 @@ public class Bishop extends Piece{
                         y=i;
                         x=j;
                         break;
-                    }
-                }
+                    }}
                 else if (board[y+1][x-1].isWhite!=this.isWhite) {
                     down += 1;
                     left-=1;
@@ -102,11 +98,10 @@ public class Bishop extends Piece{
                     x = j;
                     break;}
                 else {
-                    b=false;
+                        b=false;
                     y=i;
                     x=j;
-                }
-            }}
+                }}}
         b=true;
         down=0;
         right=0;
@@ -130,7 +125,5 @@ public class Bishop extends Piece{
                     break;
                 } else {
                     b = false;
-                }
-            }
-        }
+                }}}
         return legalMoves;}}

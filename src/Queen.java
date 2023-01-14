@@ -9,8 +9,7 @@ public class Queen extends Piece{
             this.value = 6;
         } else {
             this.value = 7;
-        }
-    }
+        }}
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) { //tweaks the moves that are unique to the given piece
         //rook
             int yf=0;
@@ -29,7 +28,6 @@ public class Queen extends Piece{
                         this.addMove(yf,0);
                         if (y==7){
                             y=i;
-                            x=j;
                             break;
                         }
                     }
@@ -37,14 +35,11 @@ public class Queen extends Piece{
                         yf += 1;
                         this.addMove(yf, 0);
                         y = i;
-                        x = j;
                         break;}
                     else {
-                        b=false;
-                        y=i;
-                        x=j;
-                    }
-                }}
+                        b = false;
+                        y = i;
+                    }}}
             b=true;
             if (i>1){
                 while (b){
@@ -55,7 +50,6 @@ public class Queen extends Piece{
                         if (y==0){
                             b=false;
                             y=i;
-                            x=j;
                         }
                     }
                     else if (board[y-1][x].isWhite!=this.isWhite) {
@@ -63,12 +57,10 @@ public class Queen extends Piece{
                         yb -= 1;
                         this.addMove(yb, 0);
                         y = i;
-                        x = j;
                         break;}
                     else {
                         b=false;
                         y=i;
-                        x=j;
                     }
                 }}
             b=true;
@@ -87,12 +79,10 @@ public class Queen extends Piece{
                         this.addMove(0, xleft);
                         x = j;
                         break;
-
                     } else {
                         b=false;
                         x=j;
-                    }
-                }}
+                    }}}
 
             b=true;
             if (j<7){
