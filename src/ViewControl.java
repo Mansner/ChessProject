@@ -113,7 +113,51 @@ class ViewControl extends JFrame implements ActionListener {
             Integer x = ele.get(0);
             Integer y = ele.get(1);
             board[i+x][j+y].setBackground(Color.green);
+            if(list.size()==1){
+                Onlyoption(i,j,x,y);
+            }
         }
+    }
+
+    public void Onlyoption(int i, int j, int x, int y) {
+        Piece status = game.getStatus(i, j);
+        Piece statusTwo = game.getStatus(i+x, j+y);
+
+        if(statusTwo!=null){
+            board[i+x][j+y].removeImage();
+        }
+
+        board[i][j].removeImage();
+        board[i+x][j+y].setImage(status.name);
+        panel.revalidate();
+        panel.repaint();
+
+
+        String message = "Do you want to do the automove?";
+        int answer = JOptionPane.showConfirmDialog(panel, message);
+        if (answer == JOptionPane.YES_OPTION) {
+            board[i+x][j+y].removeImage();
+            if(statusTwo!=null){
+                board[i+x][j+y].setImage(statusTwo.name);
+            }
+            board[i][j].setImage(status.name);
+            panel.revalidate();
+            panel.repaint();
+
+            game.drop(i+x, j+y);
+            updateStatus();
+            // User clicked YES.
+        } else if (answer == JOptionPane.NO_OPTION) {
+            board[i+x][j+y].removeImage();
+            if(statusTwo!=null){
+                board[i+x][j+y].setImage(statusTwo.name);
+            }
+            board[i][j].setImage(status.name);
+            panel.revalidate();
+            panel.repaint();
+            // User clicked NO.
+        }
+
     }
 
 
