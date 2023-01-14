@@ -13,75 +13,60 @@ public class King extends Piece{
     }
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) {
         System.out.println("update");
-        int yf=0;
-        int yb=0;
-        int xh=0;
-        int xv=0;
+
         if (i<7){
         if (board[i+1][j]==null) {
-            yf += 1;
-            addMove(yf, 0);
+            addMove(1, 0); //down
         }
         else if (board[i+1][j].isWhite!=this.isWhite) {
-            yf += 1;
-            this.addMove(yf, 0);
+            this.addMove(1, 0);
         }
             if(j<7){
-                if(board[i + 1][j + 1]!=null) {
+                if(board[i + 1][j + 1]==null) {
                     if(board[i + 1][j + 1].isWhite != this.isWhite) {
-                        System.out.println("update");
-                        this.addMove(1,1); // to the diag
-                    }
-                }
-            }
+                        this.addMove(1,1); // diagonal
+                         }}}
             if(j>0){
-                if(board[i + 1][j - 1]!=null) {
+                if(board[i + 1][j - 1]==null) {
                     if(board[i + 1][j - 1].isWhite != this.isWhite) {
-                        this.addMove(1,-1); // to the diag
+                        this.addMove(1,-1); // diagonal
         }}}}
-
         if (i>0){
         if (board[i-1][j]==null) {
-            yb -= 1;
-            addMove(yb, 0);
+            addMove(-1, 0);//up
         }
         else if (board[i-1][j].isWhite!=this.isWhite) {
-            yb -= 1;
-            this.addMove(yb, 0);
+            this.addMove(-1, 0);
         }
             if(j<7){
-                if(board[i - 1][j + 1]!=null) {
+                if(board[i - 1][j + 1]==null) {
                     if(board[i - 1][j + 1].isWhite != this.isWhite) {
-                        System.out.println("update");
-                        this.addMove(-1,1); // to the diag
+                        this.addMove(-1,1); // diagonal
                     }
                 }
             }
             if(j>0){
-                if(board[i - 1][j - 1]!=null) {
+
+                if(board[i - 1][j - 1]==null) {
                     if(board[i - 1][j - 1].isWhite != this.isWhite) {
-                        this.addMove(-1,-1); // to the diag
+                        this.addMove(-1,-1); // diagonal
                     }
                 }
             }
         }
         if (j<7){
         if (board[i][j+1]==null) {
-            xh += 1;
-            addMove(0, xh);
+            addMove(0, 1);//right
         }
         else if (board[i][j+1].isWhite!=this.isWhite) {
-            xh += 1;
-            this.addMove(0, xh);
+            this.addMove(0, 1);
         }}
         if (j>0){
         if (board[i][j-1]==null) {
-            xv -= 1;
-            addMove(0, xv);
+            addMove(0, -1); //left
         }
         else if (board[i][j-1].isWhite!=this.isWhite) {
-            xv -= 1;
-            this.addMove(0, xv);
+            this.addMove(0, -1);
         }}
 
         return legalMoves;

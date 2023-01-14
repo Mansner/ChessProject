@@ -19,7 +19,6 @@ public abstract class Piece {
     boolean b;
     public ArrayList<ArrayList<Integer>> legalMoves = new ArrayList<ArrayList<Integer>>();
 
-
     public Piece(int i, int j, boolean isWhite, String name) {
         this.i = i;
         this.j = j;
