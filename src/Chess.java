@@ -36,9 +36,9 @@ public class Chess implements Boardgame {
             this.board[xMove][yMove]=null;
             xMove = -1;
             yMove = -1;
-            this.board[x][y].getLegalMoves(board, x, y); //tar fram legalmoves för den flyttade pjäsen
-            checkKing(x, y); //kollar om det draget sätter motståndaren i chack
             checkPromovera(x,y); //kollar om det draget ska göra om en bonde till en drottning
+            legalMoves = this.board[x][y].getLegalMoves(board, x, y); //tar fram alla moves som är tillåtna.
+            checkKing(x, y); //kollar om det draget sätter motståndaren i chack
             piceMove=null;
             isWhiteTurn= !isWhiteTurn;
             return true;
@@ -78,7 +78,7 @@ public class Chess implements Boardgame {
             }
     }
 
-    private boolean checkTurn(int i, int j){
+    private boolean checkTurn(int i, int j){ // kollar om det är rätt persons tur
         if(this.board[i][j].isWhite == isWhiteTurn){
             return true;
         }

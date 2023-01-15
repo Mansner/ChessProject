@@ -13,14 +13,13 @@ class ViewControl extends JFrame implements ActionListener {
     private JLabel message = new JLabel();
     private JPanel panel = new JPanel();
 
-    private AbstractButton chessPanel;
     private boolean[][] checkImg;
 
     public static void main(String[] u) {
         Boardgame game = new Chess();
         new ViewControl(game, 8);
     }
-    ViewControl (Boardgame gm, int n) {
+    ViewControl (Boardgame gm, int n) {// skapar en jFrame, knappar och message.
         this.game = gm;
         this.n = n;
 
@@ -42,7 +41,7 @@ class ViewControl extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    void createButtons() {
+    void createButtons() {//skapar lika många knappar som spelet, ansätter en lyssnare till varje knapp.
         board = new Square[n][n];
         checkImg = new boolean[n][n];
         for (int i=0; i<n; i++) {
@@ -59,7 +58,7 @@ class ViewControl extends JFrame implements ActionListener {
         }
     }
 
-    void colourBoard() {
+    void colourBoard() { //färgar knapparna enligt Schack.
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
                 if (i % 2 == 0) {
@@ -79,14 +78,14 @@ class ViewControl extends JFrame implements ActionListener {
         }
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) { // vad som händer när användaren trycker på en ruta.
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
-                if (e.getSource() == board[i][j]) {
+                if (e.getSource() == board[i][j]) { //Hittar den knappen
                     Square sq = board[i][j];
-                    if(game.move(sq.i, sq.j)) {
-                        colourBoard();
-                        updatePosPos(sq.i, sq.j);
+                    if(game.move(sq.i, sq.j)) { //kollar om den knappen kan röra på sig
+                        colourBoard(); //färgar spelet till orginal
+                        updatePosPos(sq.i, sq.j); //färgar rutorna som är potentiella drops. Hanterar också om det är en enda ruta som e grön.
                         updateMessage();
                         continue;
                     }
@@ -104,17 +103,21 @@ class ViewControl extends JFrame implements ActionListener {
     void updatePosPos(int i, int j) {
         Piece status = game.getStatus(i, j);
         ArrayList<ArrayList<Integer>> list = status.sendLegalMoves();
-        for (ArrayList<Integer> ele :list) { // iterate through all moves
-            Integer x = ele.get(0);
-            Integer y = ele.get(1);
+        Integer x=0;
+        Integer y=0;
+
+        for (ArrayList<Integer> ele :list) { // itererar genom alla drops och färgar dem knapparna gröna.
+            x = ele.get(0);
+            y = ele.get(1);
             board[i+x][j+y].setBackground(Color.green);
-            if(list.size()==1){
-                Onlyoption(i,j,x,y);
-            }
+        }
+
+        if(list.size()==1){ // om det bara är en knappa som är grön
+            Onlyoption(i,j,x,y);
         }
     }
 
-    public void Onlyoption(int i, int j, int x, int y) {
+    public void Onlyoption(int i, int j, int x, int y) { // Gör ett autodropp och fråar användaren om det är ok.
         Piece status = game.getStatus(i, j);
         Piece statusTwo = game.getStatus(i+x, j+y);
 
@@ -126,7 +129,6 @@ class ViewControl extends JFrame implements ActionListener {
         board[i+x][j+y].setImage(status.name);
         panel.revalidate();
         panel.repaint();
-
 
         String message = "Do you want to do the automove?";
         int answer = JOptionPane.showConfirmDialog(panel, message);
@@ -142,7 +144,7 @@ class ViewControl extends JFrame implements ActionListener {
             game.drop(i+x, j+y);
             updateStatus();
             // User clicked YES.
-        } else {
+        } else { //User didnt click yes
             board[i+x][j+y].removeImage();
             if(statusTwo!=null){
                 board[i+x][j+y].setImage(statusTwo.name);
@@ -153,13 +155,12 @@ class ViewControl extends JFrame implements ActionListener {
             colourBoard();
             panel.revalidate();
             panel.repaint();
-            // User clicked NO.
         }
 
     }
 
 
-        void updateStatus() {
+        void updateStatus() {//läser hela brädet och sätter ut bilder på rätt platser.
         updateMessage();
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
@@ -191,11 +192,4 @@ class ViewControl extends JFrame implements ActionListener {
         String mess = game.getMessage();
         message.setText(mess);
     }
-
-    public void initBoard() {
-        System.out.println("initboard");
-    }
-
-
-
 }
