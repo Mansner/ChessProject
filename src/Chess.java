@@ -3,25 +3,21 @@ import java.util.Objects;
 
 public class Chess implements Boardgame {
     private final Piece[][] board = new Piece[8][8];
-
     int xMove = -1;
     int yMove = -1;
     Piece piceMove;
     boolean isWhiteTurn = true;
     ArrayList<ArrayList<Integer>> legalMoves;
-
     String showMessage;
 
-    public boolean move(int x, int y) { //redan här genereras alla legal moves från Piece
-        System.out.println(this.board[x][y]);
+    public boolean move(int x, int y) {
 
-        if (this.board[x][y]!=null) {
-            if (checkTurn(x,y)){
-                ArrayList<ArrayList<Integer>> legal = this.board[x][y].getLegalMoves(board, x, y);
-                legalMoves = legal;
-                xMove = x;
+        if (this.board[x][y]!=null) { // bara om det finns ett objekt på platsen.
+            if (checkTurn(x,y)){// kollar om det är den valda pjäsens spelares tur.
+                legalMoves = this.board[x][y].getLegalMoves(board, x, y); //tar fram alla moves som är tillåtna.
+                xMove = x; //sparar platsen där pjäsen står, används senare i funktionen drop.
                 yMove = y;
-                piceMove=this.board[x][y];
+                piceMove=this.board[x][y]; //sparar objektet (Piece)
                 showMessage=" ";
                 return true;
             }
@@ -31,21 +27,18 @@ public class Chess implements Boardgame {
 
 
     public boolean drop(int x, int y) { // ska kolla så man fakktiskt lägger på en plats som e tillåten
-
-        if(!checkDrop(x,y)){
-
+        if(!checkDrop(x,y)){ //kollar så man lägger pjäsen på ett move som finns i legalmoves listan
             return false;
         }
-        if(checkTurn(xMove,yMove)){
+
+        if(checkTurn(xMove,yMove)){//kanske inte behövs?
             this.board[x][y]=piceMove;
-            this.board[xMove][yMove].removeAllMoves();
             this.board[xMove][yMove]=null;
             xMove = -1;
             yMove = -1;
-            this.board[x][y].getLegalMoves(board, x, y);
-            checkKing(x, y);
-            checkPromovera(x,y);
-            this.board[x][y].removeAllMoves();
+            this.board[x][y].getLegalMoves(board, x, y); //tar fram legalmoves för den flyttade pjäsen
+            checkKing(x, y); //kollar om det draget sätter motståndaren i chack
+            checkPromovera(x,y); //kollar om det draget ska göra om en bonde till en drottning
             piceMove=null;
             isWhiteTurn= !isWhiteTurn;
             return true;
@@ -72,10 +65,10 @@ public class Chess implements Boardgame {
                 for (int j = 0; j < 8; j++) {
                     Piece pice = board[i][j];
                     if(pice!=null){
-                        if(Objects.equals(pice.name, "king") || Objects.equals(pice.name, "bking")){
-                            if(list.get(0) + x == i & list.get(1) + y == j){
-                                if(pice.isWhite != isWhiteTurn){
-                                    showMessage="Kingen är i fara";
+                        if(Objects.equals(pice.name, "king") || Objects.equals(pice.name, "bking")){//tar fram platsen för kungarna
+                            if(list.get(0) + x == i & list.get(1) + y == j){ //kollar om kungarnas plats är ett move för den flyttarde pjäsen
+                                if(pice.isWhite != isWhiteTurn){ //om det är den motsatta färgen
+                                    showMessage="Schack"; // visas meddelandet
                                 }
                     }
                         }
@@ -94,7 +87,6 @@ public class Chess implements Boardgame {
     }
 
     private boolean checkDrop(int x, int y){
-        System.out.println(legalMoves);
         if (legalMoves==null){
             showMessage="Felaktigt val! Vit färg börjar alltid i Schack";
             return false;
@@ -143,10 +135,13 @@ public class Chess implements Boardgame {
         this.board[7][6] = new Knight(0, 6, false, "bknight");
 
         this.board[0][4] = new King(0, 4, true, "king");
-        this.board[7][4] = new King(0, 4, false, "bking");
+        this.board[7][4] = new King(7, 4, false, "bking");
 
         this.board[0][3] = new Queen(0, 3, true, "queen");
-        this.board[7][3] = new Queen(0, 3, false, "bqueen");
+        this.board[7][3] = new Queen(7, 3, false, "bqueen");
+
+        this.board[3][3] = new Dot(0, 8, true, "dot");
+
     }
 
 

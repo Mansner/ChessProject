@@ -1,12 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 import javax.swing.*;
-import javax.swing.ImageIcon;
-import javax.swing.Icon;
+
 
 
 class ViewControl extends JFrame implements ActionListener {
@@ -23,7 +19,6 @@ class ViewControl extends JFrame implements ActionListener {
     public static void main(String[] u) {
         Boardgame game = new Chess();
         new ViewControl(game, 8);
-        //tjo
     }
     ViewControl (Boardgame gm, int n) {
         this.game = gm;
@@ -147,12 +142,15 @@ class ViewControl extends JFrame implements ActionListener {
             game.drop(i+x, j+y);
             updateStatus();
             // User clicked YES.
-        } else if (answer == JOptionPane.NO_OPTION) {
+        } else {
             board[i+x][j+y].removeImage();
             if(statusTwo!=null){
                 board[i+x][j+y].setImage(statusTwo.name);
             }
             board[i][j].setImage(status.name);
+            status=game.getStatus(i,j);
+            status.removeAllMoves(); ////// NY, gör så att man kan trycka på samma pjäs flera ggr o få upp frågan yes no.
+            colourBoard();
             panel.revalidate();
             panel.repaint();
             // User clicked NO.
@@ -181,6 +179,7 @@ class ViewControl extends JFrame implements ActionListener {
                     board[i][j].setImage(status.name);
                     checkImg[i][j] = true;
                 }
+                status.removeAllMoves();
             }
         }
         colourBoard();
