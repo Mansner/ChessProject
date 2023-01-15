@@ -3,13 +3,9 @@ import java.util.List;
 
 public class Queen extends Piece{
 
-    public Queen(int i, int j, boolean isWhite, String name){
-        super(i, j, isWhite, name);
-        if (isWhite) {
-            this.value = 6;
-        } else {
-            this.value = 7;
-        }}
+    public Queen(boolean isWhite, String name){
+        super(isWhite, name);}
+
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) { //tweaks the moves that are unique to the given piece
         //rook
             int yf=0;
@@ -18,7 +14,6 @@ public class Queen extends Piece{
             int xright=0;
             int y=i;
             int x=j;
-
             boolean b=true;
             if (i<7){
                 while (b){

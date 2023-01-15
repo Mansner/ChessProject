@@ -4,14 +4,8 @@ import java.util.List;
 public class Bishop extends Piece{
     List<Integer> list=new ArrayList<Integer>();
 
-    public Bishop(int i, int j, boolean isWhite, String name){
-        super(i, j, isWhite, name);
-        if (isWhite) {
-            this.value = 6;
-        } else {
-            this.value = 7;
-        }
-    }
+    public Bishop(boolean isWhite, String name){
+        super(isWhite, name);}
 
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j){
         int up=0;

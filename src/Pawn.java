@@ -3,13 +3,8 @@ import java.util.ArrayList;
 
 public class Pawn extends Piece{
 
-    public Pawn(int i, int j, boolean isWhite, String name){
-        super(i, j, isWhite, name);
-        if (isWhite) {
-            this.value = 4;
-        } else {
-            this.value = 5;
-        }}
+    public Pawn( boolean isWhite, String name){
+        super(isWhite, name);}
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) {
         if(this.isWhite & i<7){
             if(board[i + 1][j] == null){

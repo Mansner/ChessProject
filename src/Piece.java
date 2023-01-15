@@ -3,18 +3,14 @@ import java.util.List;
 
 public abstract class Piece {
 
-    public int i;
-    public int j;
-
     public String name;
     public int value = -1;
     public boolean isWhite;
 
     public ArrayList<ArrayList<Integer>> legalMoves = new ArrayList<ArrayList<Integer>>();
 
-    public Piece(int i, int j, boolean isWhite, String name) {
-        this.i = i;
-        this.j = j;
+    public Piece( boolean isWhite, String name) {
+
         this.isWhite = isWhite;
         this.name = name;
     }

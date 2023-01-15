@@ -3,15 +3,9 @@ import java.util.List;
 
 public class Knight extends Piece{
 
-    public Knight(int i, int j, boolean isWhite, String name){
-        super(i, j, isWhite, name);
-        if (isWhite) {
-            this.value = 6;
-        } else {
-            this.value = 7;
-        }
+    public Knight(boolean isWhite, String name){
+        super(isWhite, name);}
 
-    }
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) {
         if(i<7){
             if (j<6){

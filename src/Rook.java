@@ -4,14 +4,9 @@ import java.util.List;
 
 public class Rook extends Piece{
 
-    public Rook(int i, int j, boolean isWhite, String name){
-        super(i, j, isWhite, name);
-        if (isWhite) {
-            this.value = 6;
-        } else {
-            this.value = 7;
-        }
-    }
+    public Rook(boolean isWhite, String name){
+        super( isWhite, name);}
+
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) {
         int yf=0;
         int yb=0;
