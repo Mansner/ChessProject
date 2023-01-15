@@ -83,16 +83,17 @@ public class Knight extends Piece{
                 }
             }
             if (i>1){
-                if (j<7){
-                    if (board[i-2][j + 1]!=null)
-                    {if (board[i-2][j + 1].isWhite== this.isWhite){
-                    }
-                    else{
-                        this.addMove(-2,1);}
-                    }
-                    else{
+                if (j<7) {
+                    if (board[i - 2][j + 1] != null) {
+                        if (board[i - 2][j + 1].isWhite == this.isWhite) {
+                        } else {
+                            this.addMove(-2, 1);
+                        }
+                    } else {
 
-                        this.addMove(-2,1);}
+                        this.addMove(-2, 1);
+                    }
+                }
                 if (j>0) {
                     if (board[i-2][j - 1]!=null)
                     {if (board[i - 2][j - 1].isWhite== this.isWhite){
@@ -103,7 +104,7 @@ public class Knight extends Piece{
                     else{
                         this.addMove(-2,-1);}
                 }
-                }}
+                }
         return legalMoves;
 
 
