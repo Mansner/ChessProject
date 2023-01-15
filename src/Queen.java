@@ -50,8 +50,7 @@ public class Queen extends Piece{
                         if (y==0){
                             b=false;
                             y=i;
-                        }
-                    }
+                        }}
                     else if (board[y-1][x].isWhite!=this.isWhite) {
                         y-=1;
                         yb -= 1;
@@ -116,7 +115,6 @@ public class Queen extends Piece{
         b=true;
         if (i>0 && j>0){
             while (b){
-
                 if (board[y-1][x-1]==null){
                     y-=1;
                     x-=1;
