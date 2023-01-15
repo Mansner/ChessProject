@@ -17,14 +17,18 @@ public class King extends Piece{
         }
             if(j<7){
                 if(board[i + 1][j + 1]==null) {
-                    if(board[i + 1][j + 1].isWhite != this.isWhite) {
+                    this.addMove(1,1);}
+                else if (board[i + 1][j + 1].isWhite != this.isWhite) {
                         this.addMove(1,1); // diagonal
-                         }}}
+                         }}
             if(j>0){
                 if(board[i + 1][j - 1]==null) {
-                    if(board[i + 1][j - 1].isWhite != this.isWhite) {
-                        this.addMove(1,-1); // diagonal
-        }}}}
+
+                    this.addMove(1, -1);
+                } else if (board[i + 1][j - 1].isWhite != this.isWhite) {
+                    this.addMove(1,-1);
+                }
+        }}
         if (i>0){
         if (board[i-1][j]==null) {
             addMove(-1, 0);//up
@@ -34,20 +38,20 @@ public class King extends Piece{
         }
             if(j<7){
                 if(board[i - 1][j + 1]==null) {
-                    if(board[i - 1][j + 1].isWhite != this.isWhite) {
+                    this.addMove(-1,1);}
+
+                else if(board[i - 1][j + 1].isWhite != this.isWhite) {
                         this.addMove(-1,1); // diagonal
                     }
                 }
-            }
+
             if(j>0){
 
-                if(board[i - 1][j - 1]==null) {
-                    if(board[i - 1][j - 1].isWhite != this.isWhite) {
-                        this.addMove(-1,-1); // diagonal
-                    }
-                }
-            }
-        }
+                if(board[i - 1][j - 1]==null) {this.addMove(-1,-1);}
+
+                else if(board[i - 1][j - 1].isWhite != this.isWhite) {
+                    this.addMove(-1,-1); // diagonal
+                        }}}
         if (j<7){
         if (board[i][j+1]==null) {
             addMove(0, 1);//right
