@@ -6,7 +6,6 @@ public class King extends Piece{
     public King(boolean isWhite, String name){
         super( isWhite, name);}
     public ArrayList<ArrayList<Integer>> getLegalMoves(Piece[][] board, int i, int j) {
-        System.out.println("update");
 
         if (i<7){
         if (board[i+1][j]==null) {
